@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --verde-agua: #d4f6c8;
+  --azul-forte: #75d0df;
+  --azul-fraco: ##e9fffc;
+  --header-color: rgb(219, 219, 219);
+  --font-color: rgb(119, 119, 119);
+  --main-font: Spartan;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+input,
+::placeholder {
+  background-color: var(--azul-fraco);
+  font-family: var(--main-font) !important;
+}
+::placeholder {
+  font-size: 15px;
+  font-weight: 500;
+}
+.ilus {
+  position: fixed;
+  width: 500px;
+  height: 1500px;
+  transform: rotate(25deg);
+}
+
+.ilus1 {
+  bottom: -75px;
+  left: -200px;
+}
+.ilus2 {
+  top: -75px;
+  right: -200px;
+}
+
+.wrapper-form h2 {
+  color: var(--azul-forte);
+  margin-bottom: 25px;
+  text-align: center;
+}
+.wrapper-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper-input {
+  height: 60px;
+  width: 300px;
+  border-radius: 2px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(221, 221, 221);
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrapper-input input {
+  margin-top: 2px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  margin-left: 15px;
+  width: 300px;
+  color: rgb(150, 150, 150);
+  height: 50px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.wrapper-input i {
+  font-size: 22px;
+  color: lightgray;
+}
+.wrapper-input input:focus + .i i {
+  color: var(--azul-forte);
+}
+
+.btn-submit {
+  font-size: 16px;
+  background-color: var(--azul-forte);
+  height: 60px;
+  width: 300px;
+  border-radius: 2px;
+  border: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff !important;
+  transition: all 0.3s;
+  border: 2px solid var(--azul-forte);
+}
+.btn-submit:disabled {
+  background-color: var(--font-color);
+  cursor: not-allowed;
+}
+.btn-submit:disabled:hover {
+  background-color: transparent;
+  border: 2px solid var(--font-color);
+  color: var(--font-color);
+}
+.btn-submit:hover {
+  background-color: transparent;
+  border: 2px solid var(--azul-forte);
+  color: var(--azul-forte) !important;
+}
+@media screen and (max-width: 1100px){
+  .ilus{
+    display: none;
+  }
+}
