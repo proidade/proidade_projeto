@@ -6,7 +6,7 @@
              
 
 
-    $deletar = "DELETE FROM device WHERE id = '" . $_GET['id']."'";
+    $deletar = "DELETE FROM sensor WHERE id = '" . $_GET['id']."'";
     echo $deletar;
     
     $apagar = mysqli_query($connectionMysqlProage, $deletar);
@@ -15,7 +15,7 @@
     if($confirmacao==1){
     echo '<script> confirm("Excluido com sucesso!")</script>';
 
-    echo '<script> window.location.href="listarDevices.php"; </script>';
+    echo '<script> window.location.href="listarSensores.php"; </script>';
     }else{
         echo "Houve algum erro, tente novamente...";
     }

@@ -68,6 +68,7 @@
                 <td>" . $type . " </td>
                 <td>" . $value . " </td>
                 <td>" . $observation . " </td>
+                <td><a href='DelRegisterConfirm.php?id=" . $id  . "'>Excluir</t>
                 
             "
             );

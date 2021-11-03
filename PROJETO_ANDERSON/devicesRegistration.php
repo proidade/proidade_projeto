@@ -3,32 +3,21 @@
  
  include 'connectionMysqlProage.php';
 
-
- //if (!empty($_GET['id'])){//se o botão estiver pressionado
+ if (isset($_POST['cadastrar'])){//se o botão estiver pressionado
   
-     $id = $_GET['id'];
+     $name = $_POST['nome'];
 
-  
+     $part_number = $_POST['Nserie'];    
      
-         
-          $sql = "SELECT * FROM device WHERE id=$id";
-          $resultado = mysqli_query($connectionMysqlProage, $sql);
+       
+          $sql = "INSERT INTO device VALUES (NULL, '$name', $part_number);";//insere no banco de dados
+           echo $sql;
+           $resultado = mysqli_query($connectionMysqlProage, $sql);
            
-          while($user_data = mysqli_fetch_assoc($resultado)){
-            $name = $user_data['name'];
-            $id = $user_data['id'];
-
-            $part_number = $user_data['part_number'];   
-          }
+           var_dump($resultado);
 
 
-
-
-          echo "seu nome: " . $name;
-          echo "<br> Seu id é ".$id;
-
-
- 
+ }
 ?>
 
 <!doctype html>
@@ -61,53 +50,38 @@
     <div class="card-body p-5">
       <h4 class="card-title mb-3 text-dark text-uppercase" style="font-weight:700">Cadastro de dispositivos</h4>
 
-      <form action="salvaEditDevices.php" method="POST">
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="row">
           <div class="col">
             <div class="form-floating mb-3">
-              <input type="text" name="name" value = "<?php echo $name ?>" class="form-control" id="floatingTextInput1" placeholder="John">
+              <input type="text" name="nome" class="form-control" id="floatingTextInput1" placeholder="John">
               <label for="floatingTextInput1">Nome do dispositivo:</label>
             </div>
           </div>
-          <div>
-          <div class="col">
-            <div class="form-floating mb-3">
-          <input type="text" name="part_number" value = "<?php echo $part_number ?>" class="form-control" id="floatingTextInput1" placeholder="John">
-              <label for="floatingTextInput1">part number</label>
-</div>
-</DIV>
-
-<div class="col">
-    
-            <div class="form-floating mb-3">
-                
-          <input type="text" name="id" value = "<?php echo $id ?>" class="form-control" id="floatingTextInput1" placeholder="John" readonly>
-              <label for="floatingTextInput1">Id</label>
-
-              
-</div>
-</DIV>
-        
+          
+        <div class="form-floating mb-3">
+          <input type="text"  name="Nserie" class="form-control" id="floatingEmailInput" placeholder="name@example.com">
+          <label for="floatingEmailInput">Nº de série:</label>
         </div>
         <div class="form-check form-switch mb-3">
           <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
           <label class="form-check-label" for="flexSwitchCheckChecked">I agree to the Terms and Conditions of this Website.</label>
         </div>
-
- 
-        
         <div class="text-center">
-        <input type="submit" name="update" class="btn btn-primary" style="border-radius:0px">Submit</button>
+        <button type="submit" name="cadastrar" class="btn btn-primary" style="border-radius:0px">Submit</button>
+
+        <a href="listarDevices.php" style="color: #000000;"> <br> Ver cadastrados</a><br><br>
       </div>
-      
+      </form>
     </div>
   </div>
 </div>
 </div>
-</form>
+
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
 
 </body>
+</html>

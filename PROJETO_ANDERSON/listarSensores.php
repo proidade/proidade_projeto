@@ -66,23 +66,24 @@
                 <td>" . $capability . " </td>
                 <td>" . $part_number . " </td>
                 
-                <td><a href='editarDispositivos.php?idPizza=" . $id . "'>Editar</td>
-                <td><a href='excluirDispositivos.php?idPizza=" . $id . "'>Excluir</t>
+                <td><a href='editarSensores.php?id=" . $id . "'>Editar</td>
+                <td><a href='excluiSensores.php?id=" . $id . "'>Excluir</t>
               </tr>"
             );
             
           }
 
-        
-
-
-
             ?>
+
+
             	</thead>
 		<tbody>
 
-          
         </div>
+
+        </div>
+        </table>
+        <a href="sensorRegistration.php" style="color: #000000;">Tela de Cadastro de sensores</a><br><br>
         </body>
     
 </html>
