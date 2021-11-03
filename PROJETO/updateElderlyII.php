@@ -39,9 +39,10 @@
 			  </script>";
 	} else {
 
-		header('Location:listarIdoso.php');
-		echo "<script>
-				alert('Alteração feita com sucesso!');
-			  </script>";
+        echo "<script>
+        alert('Alteração realizada com sucesso.');
+        window.location.replace('listarIdoso.php');
+    </script>"; 
+    
 	}
 ?>
