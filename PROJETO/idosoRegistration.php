@@ -19,7 +19,7 @@
         if(isset($_POST['complement'])){
             $complement    = $_POST['complement'];
         }else{
-            $complement = NULL;
+            $complement = " ";
         }
         
 
@@ -30,19 +30,19 @@
         if(isset($_POST['telegram'])){
             $telegram    = $_POST['telegram'];
         }else{
-            $telegram = NULL;
+            $telegram = " ";
         }
 
         if(isset($_POST['whatsapp'])){
             $whatsapp    = $_POST['whatsapp'];
         }else{
-            $whatsapp = NULL;
+            $whatsapp = " ";
         }
 
         if(isset($_POST['telefone'])){
             $telefone    = $_POST['telefone'];
         }else{
-            $telefone = NULL;
+            $telefone = " ";
         }
             
         $sql = "INSERT INTO people VALUES (NULL, '$nome', '$data_nasc', '$cpf');";
@@ -64,32 +64,8 @@
         $sql4 = "INSERT INTO address VALUES (NULL, '$type', $zipcode, '$street', $number, '$city', '$complement', '$area', '$country', $resultIdPessoa, '$state', '$telefone');";
         $resultado3 = mysqli_query($connectionMysqlProage, $sql4);
 
-        
-        
-        $sql8 = "INSERT INTO contact VALUES (NULL,NULL ,NULL , $resultIdPessoa, $whatsapp,  $celular, '$email', $telegram);";
-            $resultado6 = mysqli_query($connectionMysqlProage , $sql8);
-
-        if(isset($_POST['nao'])){
-            $sql8 = "INSERT INTO contact VALUES (NULL,NULL ,NULL , $resultIdPessoa, $whatsapp,  $celular, '$email', $telegram);";
-            $resultado6 = mysqli_query($connectionMysqlProage , $sql8);
-
-        }else{           
-            $guardiaoNomeContactT = $_POST['guardiaoNome'];
-
-            $sql5 = "INSERT INTO contact_type VALUES (NULL, '$guardiaoNomeContactT');";
-            $resultado4 = mysqli_query($connectionMysqlProage , $sql5);
-    
-            Pegando o contacttype_id da tabela contact_type
-           $sql6 = "SELECT id FROM contact_type WHERE name = '$guardiaoNomeContactT';";
-            $contacttype_id = mysqli_query($connectionMysqlProage ,  $sql6);
-            $registro2 = mysqli_fetch_array($contacttype_id);
-            $resultcontacttype_id = $registro2['id'];
-    
-           /*id	contacttype_id	value	people_id	whatsapp	celular	email	telegram*/
-           $sql7 = "INSERT INTO contact VALUES (NULL, $resultcontacttype_id, null, $resultIdPessoa,   '$whatsapp', '$celular', '$email', '$telegram');";
-            $resultado5 = mysqli_query($connectionMysqlProage , $sql7);
-
-        }
+        $sql8 = "INSERT INTO contact VALUES (NULL, $resultIdPessoa, $whatsapp,  $celular, '$email', $telegram);";
+        $resultado6 = mysqli_query($connectionMysqlProage, $sql8);
 
             if(isset($_POST['sim'])){
                 //DADOS GURDIÃO
@@ -117,7 +93,7 @@
                 if(isset($_POST['complementGuardian'])){
                     $complementGuardian    = $_POST['complementGuardian'];
                 }else{
-                    $complementGuardian = NULL
+                    $complementGuardian = " ";
                 }
 
                 /*informações de contato*/ 
@@ -127,19 +103,19 @@
                 if(isset($_POST['tllGuardian'])){
                     $telegramGuardian    = $_POST['tllGuardian'];
                 }else{
-                    $telegramGuardian = NULL;;
+                    $telegramGuardian = " ";
                 }
         
                 if(isset($_POST['wppGuardian'])){
                     $whatsappGuardian    = $_POST['wppGuardian'];
                 }else{
-                    $whatsappGuardian = NULL;
+                    $whatsappGuardian = " ";
                 }
         
                 if(isset($_POST['telefoneGuardian'])){
                     $telefoneGuardian    = $_POST['telefoneGuardian'];
                 }else{
-                    $telefoneGuardian = NULL;
+                    $telefoneGuardian = " ";
                 }
                     
                 $sqlPeopleGuardian = "INSERT INTO people VALUES (NULL, '$nomeGuardian', '$data_nascGuardian', '$cpfGuardian');";
@@ -160,20 +136,6 @@
                 /*inserindo os dados na tabela Address*/
                 $sqlAddressGuardian = "INSERT INTO address VALUES (NULL, '$typeGuardian', '$zipcodeGuardian', '$streetGuardian', $numberGuardian, '$cityGuardian', '$complementGuardian', '$areaGuardian', '$countryGuardian', $resultIdPessoaGuardian, '$stateGuardian');";
                 $resultadoAddressGuardian = mysqli_query($connectionMysqlProage, $sqlAddressGuardian);
-
-
-                $sqlContatoTypeGuardian = "INSERT INTO contact_type VALUES (NULL, '$nomeGuardian');";
-                $resultadoContatoTypeGuardian = mysqli_query($connectionMysqlProage , $sqlContatoTypeGuardian);
-
-                /*Pegando o contacttype_id da tabela contact_type*/
-                $sqlContatoTypeGuardian2 = "SELECT id FROM contact_type WHERE name = '$nomeGuardian';";
-                $contacttype_idGuardian = mysqli_query($connectionMysqlProage ,  $sqlContatoTypeGuardian2);
-                $registroContatoTypeGuardian = mysqli_fetch_array($contacttype_idGuardian);
-                $resultcontacttype_idGuardian = $registroContatoTypeGuardian['id'];
-
-                /*id	contacttype_id	value	people_id    whatsapp     celular      email	telegram*/
-                $sqlContatoGuardian = "INSERT INTO contact VALUES (NULL, $resultcontacttype_idGuardian, NULL, $resultIdPessoaGuardian, '$whatsappGuardian', '$celularGuardian', '$emailGuardian', '$telegramGuardian', '$telefoneGuardian');";
-                $resultadoContatoGuardian = mysqli_query($connectionMysqlProage , $sqlContatoGuardian);
 
                 /*Pegando o idGuardian da tabela guardian*/
                 $guardian = "SELECT id FROM guardian WHERE people_id = '$resultIdPessoaGuardian';";
@@ -213,8 +175,10 @@
              
         }
         
-               echo "<script>alert('Cadastro realizado com sucesso!');</script>";
-               header('Location:idosoRegistrationForm.php');
+        echo "<script>
+        alert('Cadastro realizado com sucesso.');
+        window.location.replace('idosoRegistrationForm.php');
+    </script>"; 
     
 
     $connectionMysqlProage->close();
