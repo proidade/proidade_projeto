@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dispositivos.php" aria-expanded="false">
                         <i class="fas fa-laptop" aria-hidden="true"></i>
                         <span class="hide-menu">Dispositivos</span>
                     </a>

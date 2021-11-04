@@ -16,3 +16,4 @@
     <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="js/pages/dashboards/dashboard1.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/index.js"></script>

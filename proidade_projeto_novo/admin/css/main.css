@@ -1,0 +1,28 @@
+.btn-ml-auto {
+  margin-left: auto;
+  height: 35px;
+  width: 35px;
+  border-radius: 2px;
+  transition: background-color 0.3s ease-in-out;
+}
+.btn-color-success {
+  border: 1px solid rgb(63, 158, 63);
+  color: white;
+  background-color: rgb(63, 158, 63);
+}
+.btn-color-success:hover {
+  color: rgb(63, 158, 63);
+  background-color: transparent;
+}
+.btn-color-default {
+  border: 1px solid rgb(51, 129, 165);
+  color: white;
+  background-color: rgb(51, 129, 165);
+}
+.btn-color-default:hover {
+  color: rgb(51, 129, 165);
+  background-color: transparent;
+}
+.breadcrumb {
+  justify-content: space-around;
+}

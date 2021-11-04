@@ -1,6 +1,6 @@
 <?php
 include_once "includes/connectionMysqlProage.php";
-$resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
+$resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM device");
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
@@ -28,7 +28,7 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                     <div class="col-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb mr-auto">
-                                <li><a class="fw-normal">Sensores cadastrados</a></li>
+                                <li><a class="fw-normal">Dispositivos cadastrados</a></li>
                             </ol>
                             <button class="btn-ml-auto btn-color-success" id="btn_hide_table"><i class="fa fa-plus"></i></button>
                             <button class="btn-ml-auto btn-color-default" id="btn_show_table" style="display: none;"><i class="fa fa-eye"></i></button>
@@ -46,10 +46,7 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                                         <tr>
                                             <th class="border-top-0">ID</th>
                                             <th class="border-top-0">Nome</th>
-                                            <th class="border-top-0">Descrição</th>
-                                            <th class="border-top-0">Capacidade</th>
                                             <th class="border-top-0">Número de Série</th>
-                                            <th class="border-top-0">Dado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,15 +54,11 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                                         while ($row = mysqli_fetch_array($resultado)) {
                                             $id = $row['id'];
                                             $name = $row['name'];
-                                            $description = $row['description'];
-                                            $capability = $row['capability'];
                                             $part_number = $row['part_number'];
                                         ?>
                                             <tr>
                                                 <td><?php echo $id; ?></td>
                                                 <td><?php echo $name; ?></td>
-                                                <td><?php echo $description; ?></td>
-                                                <td><?php echo $capability; ?></td>
                                                 <td><?php echo $part_number; ?></td>
                                             </tr>
                                         <?php
