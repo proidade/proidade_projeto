@@ -73,9 +73,27 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="usuarios.php" aria-expanded="false">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span class="hide-menu">Usuários</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                        <i class="fas fa-address-card" aria-hidden="true"></i>
+                        <span class="hide-menu">Idosos (...)</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                        <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                        <span class="hide-menu">Guardiões (...)</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fornecedores.php" aria-expanded="false">
+                        <i class="fas fa-industry" aria-hidden="true"></i>
+                        <span class="hide-menu">Fornecedores</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -91,15 +109,15 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="idoso.php" aria-expanded="false">
-                        <i class="fas fa-address-card" aria-hidden="true"></i>
-                        <span class="hide-menu">Idosos</span>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="recorder.php" aria-expanded="false">
+                        <i class="fas fa-play-circle" aria-hidden="true"></i>
+                        <span class="hide-menu">Recorder</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">
-                        <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
-                        <span class="hide-menu">Guardiões</span>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                        <i class="fas fa-warehouse" aria-hidden="true"></i>
+                        <span class="hide-menu">Instalação (...)</span>
                     </a>
                 </li>
                 <!-- <li class="sidebar-item">

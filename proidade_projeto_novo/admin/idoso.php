@@ -103,6 +103,9 @@
     <?php
     include_once "./includes/js.php";
     ?>
+    <script>
+        document.title = "Idosos - Pró-id@de";
+    </script>
 </body>
 
 </html>

@@ -1,6 +1,23 @@
 <?php
 include_once "includes/connectionMysqlProage.php";
-$resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
+$resultado = mysqli_query($connectionMysqlProage, "SELECT sensor.id as 'id', sensor.name as 'name', sensor.description as 'description', sensor.capability as 'capability', sensor.part_number as 'part_number', supplier.name as 'nomeforn' FROM sensor INNER JOIN supplier ON sensor.supplier_id=supplier.id");
+if (isset($_POST['form_cadastro'])) {
+    $name = $_POST['name'];
+    $capability = $_POST['capability'];
+    $serial_number = $_POST['serial_number'];
+    $supplier_id = $_POST['supplier_id'];
+    $description = $_POST['description'];
+    $insert = mysqli_query($connectionMysqlProage, "INSERT INTO sensor VALUES (NULL, '$name', '$description', '$capability', '$serial_number',$supplier_id)");
+    if ($insert) {
+        $_SESSION['type'] = "success";
+        $_SESSION['msg'] = "Cadastro de sensor realizado com sucesso.";
+    } else {
+        $_SESSION['type'] = "danger";
+        $_SESSION['msg'] = "Falha ao cadastrar sensor.";
+    }
+    unset($_POST['form_cadastro']);
+    $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
+}
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="pt-br">
@@ -36,6 +53,18 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                     </div>
                 </div>
             </div>
+            <?php
+            if (isset($_SESSION['msg'])) {
+            ?>
+                <div class="col-12">
+                    <div class="alert alert-<?php echo $_SESSION['type'] ?>">
+                        <?php echo $_SESSION['msg']; ?>
+                    </div>
+                </div>
+            <?php
+                unset($_SESSION['msg']);
+            }
+            ?>
             <div class="container-fluid">
                 <div class="row" id="table_data">
                     <div class="col-sm-12">
@@ -49,7 +78,7 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                                             <th class="border-top-0">Descrição</th>
                                             <th class="border-top-0">Capacidade</th>
                                             <th class="border-top-0">Número de Série</th>
-                                            <th class="border-top-0">Dado</th>
+                                            <th class="border-top-0">Fornecedor</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,6 +89,7 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                                             $description = $row['description'];
                                             $capability = $row['capability'];
                                             $part_number = $row['part_number'];
+                                            $nome_forn = $row['nomeforn'];
                                         ?>
                                             <tr>
                                                 <td><?php echo $id; ?></td>
@@ -67,6 +97,7 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                                                 <td><?php echo $description; ?></td>
                                                 <td><?php echo $capability; ?></td>
                                                 <td><?php echo $part_number; ?></td>
+                                                <td><?php echo $nome_forn; ?></td>
                                             </tr>
                                         <?php
                                         }
@@ -81,53 +112,51 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material">
-                                    <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Full Name</label>
-                                        <div class="col-md-12 border-bottom p-0">
-                                            <input type="text" placeholder="Johnathan Doe" class="form-control p-0 border-0">
+                                <form class="form-horizontal form-material" action="" method="POST">
+                                    <div class="row">
+                                        <div class="form-group mb-4 col-md-4">
+                                            <div class="border-bottom p-0">
+                                                <label class="p-0" for="name">Nome do dispositivo</label>
+                                                <input type="text" placeholder="Exemplo: Sensor de temperatura" class="form-control p-0 border-0" id="name" name="name" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <div class="border-bottom p-0">
+                                                <label for="serial_number" class="p-0">Número de série</label>
+                                                <input type="number" placeholder="Exemplo: 00000000001" class="form-control p-0 border-0" id="serial_number" name="serial_number" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-4 col-md-4">
+                                            <div class="border-bottom p-0">
+                                                <label for="serial_number" class="p-0">Capacidade</label>
+                                                <input type="number" placeholder="Exemplo: 10 ºC" class="form-control p-0 border-0" id="serial_number" name="capability" required>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="example-email" class="col-md-12 p-0">Email</label>
-                                        <div class="col-md-12 border-bottom p-0">
-                                            <input type="email" placeholder="johnathan@admin.com" class="form-control p-0 border-0" name="example-email" id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Password</label>
-                                        <div class="col-md-12 border-bottom p-0">
-                                            <input type="password" value="password" class="form-control p-0 border-0">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Phone No</label>
-                                        <div class="col-md-12 border-bottom p-0">
-                                            <input type="text" placeholder="123 456 7890" class="form-control p-0 border-0">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Message</label>
-                                        <div class="col-md-12 border-bottom p-0">
-                                            <textarea rows="5" class="form-control p-0 border-0"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-sm-12">Select Country</label>
-
+                                        <label class="col-sm-12">Descrição</label>
                                         <div class="col-sm-12 border-bottom">
-                                            <select class="form-select shadow-none p-0 border-0 form-control-line">
-                                                <option>London</option>
-                                                <option>India</option>
-                                                <option>Usa</option>
-                                                <option>Canada</option>
-                                                <option>Thailand</option>
+                                            <textarea type="number" placeholder="Exemplo: Descrição genérica do sensor." class="form-control p-0 border-0" id="serial_number" name="description" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-sm-12">Selecionar fornecedor</label>
+                                        <div class="col-sm-12 border-bottom">
+                                            <select class="form-select shadow-none p-0 border-0 form-control-line" name="supplier_id">
+                                                <?php
+                                                $buscaFornecedor = mysqli_query($connectionMysqlProage, "SELECT id, name FROM supplier");
+                                                while ($rowFornecedor = mysqli_fetch_array($buscaFornecedor)) {
+                                                    $name = $rowFornecedor['name'];
+                                                    $idFornecedor = $rowFornecedor['id'];
+                                                    echo "<option value='$idFornecedor'>$name</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
+                                            <input class="btn btn-success" type="submit" name="form_cadastro" value="Adicionar dispositivo">
                                         </div>
                                     </div>
                                 </form>
@@ -144,6 +173,9 @@ $resultado = mysqli_query($connectionMysqlProage, "SELECT * FROM sensor");
     <?php
     include_once "./includes/js.php";
     ?>
+    <script>
+        document.title = "Sensores - Pró-id@de";
+    </script>
 </body>
 
 </html>
