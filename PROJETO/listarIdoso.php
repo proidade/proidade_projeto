@@ -1,6 +1,11 @@
 <?php
     include 'connectionMysqlProage.php';
-    $sql = "SELECT people.name AS 'NOME', elderly.id AS 'ID_ELDERLY', people.id AS 'ID_PEOPLE' FROM people INNER  JOIN elderly ON elderly.people_id=people.id;";
+    $sql = "SELECT people.name AS 'NOME', 
+	elderly.id AS 'ID_ELDERLY', 
+	people.id AS 'ID_PEOPLE' 
+	FROM people 
+	INNER JOIN elderly 
+	ON elderly.people_id=people.id;";
 	$resultado = mysqli_query($connectionMysqlProage, $sql);
 
 ?>
@@ -50,7 +55,7 @@
 							<img src='imagens/WRITE3.ICO' width='20px' height='20px' align='center'></a></td>
 							
 							<td><a href=deleteElderly.php?idIdosoPeople=".$registro['ID_PEOPLE'].">
-							<img src='imagens/009.ICO' width='20px' height='20px'  onclick='return confirm('Tem certeza que deseja deletar este registro?')'></a></td>
+							<img src='imagens/009.ICO' width='20px' height='20px'  onclick='return confirm('Tem certeza que deseja deletar esse registro?')'></a></td>
 
 							<td>
 								<div class='row'>
@@ -62,8 +67,8 @@
 											aria-haspopup='true' 
 											aria-expanded='true'> 
 											<ul class='dropdown-menu' aria-labelledby='dropdownMenu1'>
-												<li><a href=listarGuardian.php?idIdosoPeople=" . $registro['ID_PEOPLE'] . " type='submit'>Listar os guardiões</a></li>
-												<li><a href=supplierRegistration.php?idIdosoPeople=" . $registro['ID_PEOPLE'] . " type='submit'>Adicionar mais guardiões</a></li>
+												<li><a href=listarGuardianElderly.php?idIdosoPeople=" . $registro['ID_PEOPLE'] . " type='submit'>Listar os guardiões</a></li>
+												<li><a href=guardianRegistration.php?idIdosoPeople=" . $registro['ID_PEOPLE'] . " type='submit'>Adicionar um novo guardião</a></li>
 											</ul>
 										</div>
 									</div> <!-- end col -->

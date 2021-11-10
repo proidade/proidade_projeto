@@ -61,12 +61,13 @@
 
         /*id	type	zipcode	street	number	city	complement	area	country	people_id	state*/ 
         /*inserindo os dados na tabela Address*/
-        $sql4 = "INSERT INTO address VALUES (NULL, '$type', $zipcode, '$street', $number, '$city', '$complement', '$area', '$country', $resultIdPessoa, '$state', '$telefone');";
+        $sql4 = "INSERT INTO address VALUES (NULL, '$type', $zipcode, '$street', $number, '$city', '$complement', '$area', '$country', $resultIdPessoa, '$state');";
         $resultado3 = mysqli_query($connectionMysqlProage, $sql4);
 
-        $sql8 = "INSERT INTO contact VALUES (NULL, $resultIdPessoa, $whatsapp,  $celular, '$email', $telegram);";
+        $sql8 = "INSERT INTO contact VALUES (NULL, $resultIdPessoa, $whatsapp,  $celular, '$email', $telegram, $telefone);";
         $resultado6 = mysqli_query($connectionMysqlProage, $sql8);
 
+       
             if(isset($_POST['sim'])){
                 //DADOS GURDIÃO
                 $nomeGuardian        = $_POST['guardiaoNome'];
@@ -136,6 +137,10 @@
                 /*inserindo os dados na tabela Address*/
                 $sqlAddressGuardian = "INSERT INTO address VALUES (NULL, '$typeGuardian', '$zipcodeGuardian', '$streetGuardian', $numberGuardian, '$cityGuardian', '$complementGuardian', '$areaGuardian', '$countryGuardian', $resultIdPessoaGuardian, '$stateGuardian');";
                 $resultadoAddressGuardian = mysqli_query($connectionMysqlProage, $sqlAddressGuardian);
+
+                $sqlContatoGuardian = "INSERT INTO contact VALUES (NULL, $resultIdPessoaGuardian, '$whatsappGuardian', '$celularGuardian', '$emailGuardian', '$telegramGuardian', $telefoneGuardian);";
+                $resultadoContatoGuardian = mysqli_query($connectionMysqlProage , $sqlContatoGuardian);
+
 
                 /*Pegando o idGuardian da tabela guardian*/
                 $guardian = "SELECT id FROM guardian WHERE people_id = '$resultIdPessoaGuardian';";

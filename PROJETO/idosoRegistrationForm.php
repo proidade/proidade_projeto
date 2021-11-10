@@ -192,12 +192,7 @@
                                         <label for="guardiaoName">Nome do guardião</label>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-floating mb-3">
-                                        <input type="number" name="cpfGuardian" id="cpfID" class="form-control" placeholder="CPF do guardião">
-                                        <label for="cpf" >CPF do guardião</label>
-                                    </div>
-                                </div>
+                                
                             </div>
                             
 

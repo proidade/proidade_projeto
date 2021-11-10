@@ -74,7 +74,7 @@
                 }
         
                 if(isset($linha2['street'])){
-                    $street    = $linha2['birtstreeth_date'];
+                    $street    = $linha2['street'];
                 }else{
                     $street = "Não informado.";
                 }

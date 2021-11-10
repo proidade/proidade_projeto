@@ -73,7 +73,7 @@
 
 			    <div class="rs_item"><center>
 					<br><font size="4"<p class="tituloCadastro">Novo sensor</font>
-					<form action="sensorRegistration.php" method="POST">
+					<form action="dadosSensores.php" method="POST">
 						<img src="imagens/sensor.png" width="100px"; height="100px" style="padding-left: 15px; margin-top: 8px;"><br>
 		            	<input type="submit" name="cadastrar2" id="cadastarButtonID" class="ButtonClass" value="CADASTRAR"><br>
 					</form></center>
@@ -100,14 +100,24 @@
 			    <div class="rs_item"><center>
 
 			    	<br><font size="4" <p class="tituloCadastro">Cadastrar idoso </p></font>
-					<form action="idosoRegistrationForm.html" method="POST">
+					<form action="idosoRegistrationForm.php" method="POST">
 						<img src="imagens/idoso.png" width="100px"; height="100px" style="padding-left: 15px; margin-top: 8px;"><br>
 		            	<input type="submit" name="cadastrar4" id="cadastarButtonID" class="ButtonClass" value="CADASTRAR">
 					</form></center>
-			    </div>
+			    </div>																																										
+			</div>    	 
+			
+			<div class="registrationSystem">
+				<div class="container">
+			    <div class="rs_item"><center>
 
-			    																																											
-			</div>    	  	
+			    	<br><font size="4" <p class="tituloCadastro">Fazer uma instalação </p></font>
+					<form action="installation.php" method="POST">
+						<img src="" width="100px"; height="100px" style="padding-left: 15px; margin-top: 8px;"><br>
+		            	<input type="submit" name="cadastrar4" id="cadastarButtonID" class="ButtonClass" value="CADASTRAR">
+					</form></center>
+			    </div>																																										
+			</div>    
 		</div>
 
 </body>
