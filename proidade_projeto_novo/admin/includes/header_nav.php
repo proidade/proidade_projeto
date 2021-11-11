@@ -79,15 +79,15 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="idosos.php" aria-expanded="false">
-                        <i class="fas fa-address-card" aria-hidden="true"></i>
-                        <span class="hide-menu">Idosos</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="guardioes.php" aria-expanded="false">
                         <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
                         <span class="hide-menu">Guardiões</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="idosos.php" aria-expanded="false">
+                        <i class="fas fa-address-card" aria-hidden="true"></i>
+                        <span class="hide-menu">Idosos</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

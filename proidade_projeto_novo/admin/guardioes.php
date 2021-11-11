@@ -2,85 +2,79 @@
 include_once "includes/connectionMysqlProage.php";
 $resultado = mysqli_query($connectionMysqlProage, "SELECT people.id as 'id', people.name as 'name' FROM people INNER JOIN guardian ON people.id=guardian.people_id");
 if (isset($_POST['form_cadastro'])) {
-    // $success = true;
-    // $nome = $_POST['fullname'];
-    // $data_nasc = $_POST['date'];
-    // $cpf = $_POST['cpf'];
-    // /*informações de endereço */
-    // $type = $_POST['type'];
-    // $zipcode = $_POST['zipcode'];
-    // $street = $_POST['street'];
-    // $number = $_POST['number'];
-    // $city = $_POST['city'];
-    // $area = $_POST['bairroAddress'];
-    // $country = $_POST['country'];
-    // $state = $_POST['state'];
-    // if (isset($_POST['complement'])) {
-    //     $complement = $_POST['complement'];
-    // } else {
-    //     $complement = "";
-    // }
-    // /*informações de contato */
-    // $celular = $_POST['cellphone'];
-    // $email = $_POST['email'];
-    // $guardian = $_POST['guardian_id'];
-    // if (isset($_POST['telegram'])) {
-    //     $telegram    = $_POST['telegram'];
-    // } else {
-    //     $telegram = "";
-    // }
-    // if (isset($_POST['whatsapp'])) {
-    //     $whatsapp    = $_POST['whatsapp'];
-    // } else {
-    //     $whatsapp = "";
-    // }
-    // if (isset($_POST['telephone'])) {
-    //     $telefone    = $_POST['telephone'];
-    // } else {
-    //     $telefone = "";
-    // }
-    // $insertPeople = mysqli_query($connectionMysqlProage, "INSERT INTO people VALUES (NULL, '$nome', '$data_nasc', '$cpf');");
-    // if (!$insertPeople) {
-    //     $success = false;
-    // }
+    $success = true;
+    $nome = $_POST['fullname'];
+    $data_nasc = $_POST['date'];
+    $cpf = $_POST['cpf'];
+    /*informações de endereço */
+    $type = $_POST['type'];
+    $zipcode = $_POST['zipcode'];
+    $street = $_POST['street'];
+    $number = $_POST['number'];
+    $city = $_POST['city'];
+    $area = $_POST['bairroAddress'];
+    $country = $_POST['country'];
+    $state = $_POST['state'];
+    $relativeDegree = $_POST['grau_parentesco'];
+    if($relativeDegree == "7 - Outro"){
+        $relativeDegree = $_POST['relative_degree_outro'];
+    }
+    if (isset($_POST['complement'])) {
+        $complement = $_POST['complement'];
+    } else {
+        $complement = "";
+    }
+    /*informações de contato */
+    $celular = $_POST['cellphone'];
+    $email = $_POST['email'];
+    if (isset($_POST['telegram'])) {
+        $telegram    = $_POST['telegram'];
+    } else {
+        $telegram = "";
+    }
+    if (isset($_POST['whatsapp'])) {
+        $whatsapp    = $_POST['whatsapp'];
+    } else {
+        $whatsapp = "";
+    }
+    if (isset($_POST['telephone'])) {
+        $telefone    = $_POST['telephone'];
+    } else {
+        $telefone = "";
+    }
+    $insertPeople = mysqli_query($connectionMysqlProage, "INSERT INTO people VALUES (NULL, '$nome', '$data_nasc', '$cpf');");
+    if (!$insertPeople) {
+        $success = false;
+    }
 
-    // $idPessoa = mysqli_query($connectionMysqlProage,  "SELECT id FROM people WHERE cpf = '$cpf';");
-    // $registro = mysqli_fetch_array($idPessoa);
-    // $resultIdPessoa = $registro['id'];
+    $idPessoa = mysqli_query($connectionMysqlProage,  "SELECT id FROM people WHERE cpf = '$cpf';");
+    $registro = mysqli_fetch_array($idPessoa);
+    $resultIdPessoa = $registro['id'];
 
-    // $insertElderly = mysqli_query($connectionMysqlProage, "INSERT INTO elderly VALUES (NULL, $resultIdPessoa);");
-    // if (!$insertElderly) {
-    //     $success = false;
-    // }
+    $insertGuardian = mysqli_query($connectionMysqlProage, "INSERT INTO guardian VALUES (NULL, '$relativeDegree', $resultIdPessoa);");
+    if (!$insertGuardian) {
+        $success = false;
+    }
 
-    // $insertAddress = mysqli_query($connectionMysqlProage, "INSERT INTO address VALUES (NULL, '$type', $zipcode, '$street', $number, '$city', '$complement', '$area', '$country', $resultIdPessoa, '$state');");
-    // if (!$insertAddress) {
-    //     $success = false;
-    // }
+    $insertAddress = mysqli_query($connectionMysqlProage, "INSERT INTO address VALUES (NULL, '$type', $zipcode, '$street', $number, '$city', '$complement', '$area', '$country', $resultIdPessoa, '$state');");
+    if (!$insertAddress) {
+        $success = false;
+    }
 
-    // $insertContact = mysqli_query($connectionMysqlProage, "INSERT INTO contact VALUES (NULL, $resultIdPessoa, $whatsapp,  $celular, '$email', $telegram, $telefone);");
-    // if (!$insertContact) {
-    //     $success = false;
-    // }
+    $insertContact = mysqli_query($connectionMysqlProage, "INSERT INTO contact VALUES (NULL, $resultIdPessoa, '$whatsapp',  '$celular', '$email', '$telegram', '$telefone');");
+    if (!$insertContact) {
+        $success = false;
+    }
 
-    // $idElderly = mysqli_query($connectionMysqlProage, "SELECT elderly.id AS 'ID_ELDERLY' FROM elderly INNER JOIN people ON people.id=elderly.people_id WHERE people.cpf = '$cpf';");
-    // $registroElderly = mysqli_fetch_array($idElderly);
-    // $resultIdElderly = $registroElderly['ID_ELDERLY'];
-
-    // $vinculoGuardianElderly = mysqli_query($connectionMysqlProage, "INSERT INTO guardian_has_elderly VALUES ($resultIdElderly, $guardian);");
-    // if (!$vinculoGuardianElderly) {
-    //     $success = false;
-    // }
-
-    // if ($success) {
-    //     session_start();
-    //     $_SESSION['type'] = "success";
-    //     $_SESSION['msg'] = "Cadastro de idoso realizado com sucesso.";
-    // } else {
-    //     session_start();
-    //     $_SESSION['type'] = "danger";
-    //     $_SESSION['msg'] = "Falha ao cadastrar idoso.";
-    // }
+    if ($success) {
+        session_start();
+        $_SESSION['type'] = "success";
+        $_SESSION['msg'] = "Cadastro de guardião realizado com sucesso.";
+    } else {
+        session_start();
+        $_SESSION['type'] = "danger";
+        $_SESSION['msg'] = "Falha ao cadastrar guardião.";
+    }
 
     unset($_POST['form_cadastro']);
     $resultado = mysqli_query($connectionMysqlProage, "SELECT people.id as 'id', people.name as 'name' FROM people INNER JOIN guardian ON people.id=guardian.people_id");
@@ -250,13 +244,13 @@ if (isset($_POST['form_cadastro'])) {
                                         <div class="form-group mb-4 col-md-4">
                                             <div class="border-bottom p-0">
                                                 <label for="state" class="p-0">Estado (*)</label>
-                                                <input type="text" placeholder="Exemplo: São Luiz" class="form-control p-0 border-0" id="state" name="state" required>
+                                                <input type="text" placeholder="Exemplo: RS" class="form-control p-0 border-0" id="state" name="state" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-4">
                                             <div class="border-bottom p-0">
                                                 <label for="complement" class="p-0">Complemento</label>
-                                                <input type="text" placeholder="Exemplo: Lote 1" class="form-control p-0 border-0" id="complement" name="complement" required>
+                                                <input type="text" placeholder="Exemplo: Lote 1" class="form-control p-0 border-0" id="complement" name="complement">
                                             </div>
                                         </div>
                                     </div>
@@ -296,22 +290,33 @@ if (isset($_POST['form_cadastro'])) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-sm-12">Selecionar guardião</label>
-                                        <div class="col-sm-12 border-bottom">
-                                            <select class="form-select shadow-none p-0 border-0 form-control-line" name="guardian_id">
-                                                <?php
-                                                $buscaGuardiao = mysqli_query($connectionMysqlProage, "SELECT guardian.id AS 'ID_GUARDIAN', people.name as 'NAME_GUARDIAN' FROM guardian INNER JOIN people ON people.id=guardian.people_id");
-                                                while ($rowGuardian = mysqli_fetch_array($buscaGuardiao)) {
-                                                    echo "<option value='$rowGuardian[ID_GUARDIAN]'>$rowGuardian[NAME_GUARDIAN]</option>";
-                                                }
-                                                ?>
-                                            </select>
+                                    <div class="row">
+                                        <div class="form-group mb-4 col-md-6">
+                                            <div class="border-bottom">
+                                                <label for="grau_parentesco" class="p-0">Grau de parentesco (*)</label>
+                                                <select class="form-select shadow-none p-0 border-0 form-control-line" name="grau_parentesco">
+                                                    <option value="1 - Filho/a">1 - Filho/a</option>
+                                                    <option value="2 - Neto/a">2 - Neto/a</option>
+                                                    <option value="3 - Pai/Mãe">3 - Pai/Mãe</option>
+                                                    <option value="4 - Sobrinho/a">4 - Sobrinho/a</option>
+                                                    <option value="5 - Tio/a">5 - Tio/a</option>
+                                                    <option value="6 - Primo/a">6 - Primo/a</option>
+                                                    <option value="7 - Outro">7 - Outro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-4 col-md-6">
+                                            <div class="form-group mb-4 col-md-6">
+                                                <div class="border-bottom p-0">
+                                                    <label for="relative_degree_outro" class="p-0">Se for outro, qual?</label>
+                                                    <input type="text" placeholder="Exemplo: Avô" class="form-control p-0 border-0" id="relative_degree_outro" name="relative_degree_outro">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="col-sm-12">
-                                            <input class="btn btn-success" type="submit" name="form_cadastro" value="Adicionar idoso">
+                                            <input class="btn btn-success" type="submit" name="form_cadastro" value="Adicionar guardião">
                                         </div>
                                     </div>
                                 </form>
