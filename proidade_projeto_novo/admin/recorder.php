@@ -22,9 +22,11 @@ if (isset($_POST['form_cadastro'])) {
     }
     $insert = mysqli_query($connectionMysqlProage, "INSERT INTO recorder VALUES (NULL, '$date_time', $people_id, '$ip', $device_id, $sensor_id, '$tipoLeitura', '$valor' , '$descricao');");
     if ($insert) {
+        session_start();
         $_SESSION['type'] = "success";
         $_SESSION['msg'] = "Cadastro de dado do recorder realizado com sucesso.";
     } else {
+        session_start();
         $_SESSION['type'] = "danger";
         $_SESSION['msg'] = "Falha ao cadastrar dado do recorder.";
     }

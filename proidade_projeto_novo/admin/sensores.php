@@ -9,9 +9,11 @@ if (isset($_POST['form_cadastro'])) {
     $description = $_POST['description'];
     $insert = mysqli_query($connectionMysqlProage, "INSERT INTO sensor VALUES (NULL, '$name', '$description', '$capability', '$serial_number',$supplier_id)");
     if ($insert) {
+        session_start();
         $_SESSION['type'] = "success";
         $_SESSION['msg'] = "Cadastro de sensor realizado com sucesso.";
     } else {
+        session_start();
         $_SESSION['type'] = "danger";
         $_SESSION['msg'] = "Falha ao cadastrar sensor.";
     }

@@ -3,13 +3,15 @@ include_once "includes/connectionMysqlProage.php";
 $resultado = mysqli_query($connectionMysqlProage, "SELECT id, username, access_level FROM users");
 if (isset($_POST['form_cadastro'])) {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $access_level = $_POST['access_level'];
     $insert = mysqli_query($connectionMysqlProage, "INSERT INTO users VALUES (NULL, '$username', '$password', '$access_level')");
     if ($insert) {
+        session_start();
         $_SESSION['type'] = "success";
         $_SESSION['msg'] = "Cadastro de usuário realizado com sucesso.";
     } else {
+        session_start();
         $_SESSION['type'] = "danger";
         $_SESSION['msg'] = "Falha ao cadastrar usuário.";
     }
@@ -103,12 +105,12 @@ if (isset($_POST['form_cadastro'])) {
                                         <div class="form-group mb-4 col-md-6">
                                             <div class="border-bottom p-0">
                                                 <label class="p-0" for="username">Nome de usuário</label>
-                                                <input type="text" placeholder="Exemplo: (fulano.silva)" class="form-control p-0 border-0" id="username" name="username" required>
+                                                <input type="text" placeholder="Exemplo: fulano.silva" class="form-control p-0 border-0" id="username" name="username" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4 col-md-6">
                                             <div class="border-bottom p-0">
-                                                <label for="password" class="p-0">Password</label>
+                                                <label for="password" class="p-0">Senha</label>
                                                 <input type="password" placeholder="Exemplo: $##SENHA120$#$" class="form-control p-0 border-0" id="password" name="password" required>
                                             </div>
                                         </div>

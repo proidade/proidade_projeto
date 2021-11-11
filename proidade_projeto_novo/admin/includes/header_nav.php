@@ -79,15 +79,15 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="idosos.php" aria-expanded="false">
                         <i class="fas fa-address-card" aria-hidden="true"></i>
-                        <span class="hide-menu">Idosos (...)</span>
+                        <span class="hide-menu">Idosos</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="guardioes.php" aria-expanded="false">
                         <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
-                        <span class="hide-menu">Guardiões (...)</span>
+                        <span class="hide-menu">Guardiões</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -157,7 +157,7 @@
                     </a>
                 </li> -->
                 <li class="text-center p-20 upgrade-btn">
-                    <a href="#" class="btn d-grid btn-danger text-white" target="_blank">Sair
+                    <a href="includes/sair.php" class="btn d-grid btn-danger text-white">Sair
                     </a>
                 </li>
             </ul>

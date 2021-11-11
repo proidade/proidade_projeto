@@ -6,9 +6,11 @@ if (isset($_POST['form_cadastro'])) {
     $serial_number = $_POST['serial_number'];
     $insert = mysqli_query($connectionMysqlProage, "INSERT INTO device VALUES (NULL, '$name', $serial_number)");
     if ($insert) {
+        session_start();
         $_SESSION['type'] = "success";
         $_SESSION['msg'] = "Cadastro de dispositivo realizado com sucesso.";
     } else {
+        session_start();
         $_SESSION['type'] = "danger";
         $_SESSION['msg'] = "Falha ao cadastrar dispositivo.";
     }
